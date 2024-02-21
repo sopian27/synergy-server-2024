@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  db:
+    container_name: cirestserver_db
+    restart: always
+    image: mariadb:latest
+    command: --lower_case_table_names=1 --sql_mode=""
+    environment:
+      MYSQL_ROOT_PASSWORD: aassddff
+      MYSQL_DATABASE: sik
+      MYSQL_USER: spekta
+      MYSQL_PASSWORD: password123
+    volumes:
+      - /home/db_data/sikatdb:/var/lib/mysql
+      - ./sikatdb.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "10003:3306"
+  web:
+    build: ./webserver-docker
+    container_name: cirestserver_web
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html/
+    ports:
+      - "10002:80"
