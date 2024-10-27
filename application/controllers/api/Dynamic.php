@@ -34,6 +34,20 @@ class Dynamic extends REST_Controller {
         $this->set_response($dynamicData, REST_Controller::HTTP_OK);
     }
 
+    public function getByQuery_get() {
+        $tahun = $this->get('tahun');
+        $unit = $this->get('unit');
+        $indikator = array();
+        $indikator =  $this->sikat_profile_indikator_model->getByQuery($tahun,$unit);
+        $this->set_response($indikator, REST_Controller::HTTP_OK);
+    }
+
+    public function getProcessType_get() {
+        $type = array();
+        $type =  $this->sikat_profile_type_model->all();
+        $this->set_response($type, REST_Controller::HTTP_OK);
+    }
+
 
 }
 

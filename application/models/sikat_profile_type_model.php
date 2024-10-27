@@ -10,7 +10,7 @@ class Sikat_Profile_Type_Model extends CI_Model
 
     public function all()
     {
-        return $this->db->get('sikat_profile_type_model')->result();
+        return $this->db->get('sikat_profile_type')->result();
     }
 }
 
