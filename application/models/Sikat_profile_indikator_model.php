@@ -22,6 +22,10 @@ class Sikat_Profile_Indikator_Model extends CI_Model
         if(isset($unit)) $this->db->where('pro.process_type =',$unit);
         return $this->db->get()->result_array();
     }
+
+    public function getLevel($unit,$tahun){
+        return $this->db->query("SELECT max(level)+1 as result FROM sikat_profile_indikator WHERE tahun='".$tahun."' and PROCESS_TYPE='".$unit."'")->result();
+    }
 }
 
 

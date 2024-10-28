@@ -24,6 +24,12 @@ class IndikatorMutu_Model extends CI_Model
         return $id;
     }
 
+    public function save($data){
+        $this->db->insert('sikat_profile_indikator', $data);
+        $this->db->set('create_date', 'NOW()', FALSE);
+        return $this->db->insert_id();
+    }
+
     public function delete($id)
     {
         $ids = explode(";",$id);
